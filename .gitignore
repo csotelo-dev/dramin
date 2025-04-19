@@ -1,0 +1,7 @@
+moodledata/
+cache/
+localcache/
+sessions/
+temp/
+trashdir/
+config.php
