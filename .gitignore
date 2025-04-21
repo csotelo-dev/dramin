@@ -1,7 +1,14 @@
 moodledata/
+config.php
 cache/
 localcache/
 sessions/
 temp/
 trashdir/
-config.php
+*.log
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
+vendor/
+node_modules/
