@@ -1,0 +1,639 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template theme_moove/drawers
+
+    Boost drawer template.
+
+    Context variables required for this template:
+    * sitename - The name of the site
+    * output - The core renderer for the page
+    * bodyattributes - attributes for the body tag as a string of html attributes
+    * sidepreblocks - HTML for the blocks
+    * hasblocks - true if there are blocks on this page
+    * courseindexopen - true if the nav drawer should be open on page load
+    * regionmainsettingsmenu - HTML for the region main settings menu
+    * hasregionmainsettingsmenu - There is a region main settings menu on this page.
+
+    Example context (json):
+    {
+        "sitename": "Moodle",
+        "output": {
+            "doctype": "<!DOCTYPE html>",
+            "page_title": "Test page",
+            "favicon": "favicon.ico",
+            "main_content": "<h1>Headings make html validators happier</h1>"
+         },
+        "bodyattributes":"",
+        "sidepreblocks": "<h2>Blocks html goes here</h2>",
+        "hasblocks":true,
+        "courseindexopen": true,
+        "navdraweropen": false,
+        "blockdraweropen": true,
+        "regionmainsettingsmenu": "",
+        "hasregionmainsettingsmenu": false,
+        "addblockbutton": ""
+    }
+}}
+{{> theme_moove/head }}
+
+<body {{{ bodyattributes }}}>
+<style>
+#page-header{
+    display: none !important;
+}
+
+.banner {
+    background-image: url('{{config.wwwroot}}/theme/moove/pix/home-banner.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 640px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 150px;
+    position: relative;
+}
+
+.banner::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(139, 114, 148, 0.5); 
+    z-index: 1;
+}
+
+.banner-content {
+    color: #ffffff;
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.banner-content h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.banner-content p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.banner-button {
+    background-color: #ffffff;
+    color: #8b7294;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.banner-button:hover {
+    background-color: #8b7294;
+    color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .banner-content h1 {
+        font-size: 28px;
+    }
+
+    .banner-content p {
+        font-size: 16px;
+    }
+
+    .banner-button {
+        padding: 10px 25px;
+        font-size: 15px;
+    }
+
+    .banner {
+        height: 500px;
+    }
+}
+
+#frontpage-available-course-list > h2{
+    display: none !important;
+}
+
+#topofscroll{
+    width: 100% !important;
+    max-width:  100% !important;
+}
+
+
+.servicios {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+}
+
+.titulo {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.subtitulo {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 50px;
+  line-height: 1.6;
+}
+
+.servicios-grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.servicio-box {
+  background-color: #e5d2e5;
+  padding: 30px 20px;
+  border-radius: 10px;
+  width: 260px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.servicio-box img.icono {
+  width: 60px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.servicio-box h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.servicio-box p {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.4;
+}
+
+.servicio-destacado {
+  background-color: #b996b9;
+}
+
+.servicio-destacado h3,
+.servicio-destacado p {
+  color: white;
+}
+
+.servicio-destacado img.icono {
+  filter: brightness(0) invert(1);
+}
+
+
+.mision-vision-valores {
+  background-color: #f9f9f9;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.container-mvv {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.card-mvv {
+  width: 300px;
+  text-align: center;
+}
+
+.img-container {
+  position: relative;
+}
+
+.img-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 5px;
+}
+
+.icono-circular {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #b996b9;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icono-circular img {
+  width: 24px;
+  height: 24px;
+}
+
+.card-mvv h3 {
+  margin-top: 40px; /* espacio para el ícono */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.card-mvv p {
+  font-size: 14px;
+  margin-top: 15px;
+  color: #333;
+}
+
+.testimonios {
+  padding: 60px 20px;
+  background-color: #fff;
+}
+
+.slider-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.content-slide {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  min-height: 400px;
+}
+
+.video-testimonio {
+  flex: 1 1 50%;
+  max-width: 50%;
+  display: flex;
+}
+
+.video-testimonio iframe {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px 0 0 5px;
+  object-fit: cover;
+  display: block;
+}
+
+.texto-testimonio {
+  flex: 1 1 50%;
+  max-width: 50%;
+  background-color: #e9d9eb;
+  border-radius: 0 5px 5px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 🔥 centra verticalmente */
+  align-items: flex-start; /* 🔥 texto alineado a la izquierda */
+  height: 100%;
+  padding: 40px 30px;
+  box-sizing: border-box;
+}
+
+.texto-testimonio h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.texto-testimonio p {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.6;
+}
+
+.dots {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.dot {
+  height: 8px;
+  width: 8px;
+  margin-right: 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #6d4676;
+}
+
+/* Slides */
+.slide {
+  display: none;
+}
+
+.slide.active {
+  display: block;
+}
+
+
+</style>
+
+
+{{> theme_moove/accessibilitybar }}
+
+{{> core/local/toast/wrapper}}
+
+<div id="page-wrapper" class="d-print-block">
+
+    {{{ output.standard_top_of_body_html }}}
+
+    {{> theme_moove/navbar }}
+
+    <section class="banner">
+        <div class="banner-content">
+            <h1>¿Por qué estudiar un curso<br>de actualización con nosotros?</h1>
+            <p>Los cursos cortos de actualización son esenciales para seguir siendo relevantes en el mercado<br>de la estética y ampliar nuestras oportunidades laborales.</p>
+            <a style="text-decoration: none;" href="/my/courses.php" class="banner-button">Mis cursos →</a>
+        </div>
+    </section>
+
+
+
+
+    <div>
+
+    {{#courseindex}}
+        {{< theme_boost/drawer }}
+            {{$id}}theme_boost-drawers-courseindex{{/id}}
+            {{$drawerheadercontent}}
+                {{> theme_boost/courseindexdrawercontrols}}
+            {{/drawerheadercontent}}
+            {{$drawerclasses}}drawer drawer-left {{#courseindexopen}}show{{/courseindexopen}}{{/drawerclasses}}
+            {{$drawercontent}}
+                {{{courseindex}}}
+            {{/drawercontent}}
+            {{$drawerpreferencename}}drawer-open-index{{/drawerpreferencename}}
+            {{$drawerstate}}show-drawer-left{{/drawerstate}}
+            {{$tooltipplacement}}right{{/tooltipplacement}}
+            {{$closebuttontext}}{{#str}}closecourseindex, core{{/str}}{{/closebuttontext}}
+        {{/ theme_boost/drawer}}
+    {{/courseindex}}
+    {{#hasblocks}}
+        {{< theme_boost/drawer }}
+            {{$id}}theme_boost-drawers-blocks{{/id}}
+            {{$drawerclasses}}drawer drawer-right{{#blockdraweropen}} show{{/blockdraweropen}}{{/drawerclasses}}
+            {{$drawercontent}}
+                <section class="d-print-none" aria-label="{{#str}}blocks{{/str}}">
+                    {{{ addblockbutton }}}
+                    {{{ sidepreblocks }}}
+                </section>
+            {{/drawercontent}}
+            {{$drawerpreferencename}}drawer-open-block{{/drawerpreferencename}}
+            {{$forceopen}}{{#forceblockdraweropen}}1{{/forceblockdraweropen}}{{/forceopen}}
+            {{$drawerstate}}show-drawer-right{{/drawerstate}}
+            {{$tooltipplacement}}left{{/tooltipplacement}}
+            {{$drawercloseonresize}}1{{/drawercloseonresize}}
+            {{$closebuttontext}}{{#str}}closeblockdrawer, core{{/str}}{{/closebuttontext}}
+        {{/ theme_boost/drawer}}
+    {{/hasblocks}}
+    <div style="margin-top: 0;" id="page" data-region="mainpage" data-usertour="scroller" class="drawers {{#courseindexopen}}show-drawer-left{{/courseindexopen}} {{#blockdraweropen}}show-drawer-right{{/blockdraweropen}} drag-container">
+
+        {{{ output.full_header }}}
+
+        <div id="topofscroll" class="main-inner">
+            <div class="drawer-toggles d-flex">
+                {{#courseindex}}
+                    <div class="drawer-toggler drawer-left-toggle open-nav d-print-none">
+                        <button
+                            class="btn icon-no-margin"
+                            data-toggler="drawers"
+                            data-action="toggle"
+                            data-target="theme_boost-drawers-courseindex"
+                            data-toggle="tooltip"
+                            data-placement="right"
+                            title="{{#str}}opendrawerindex, core{{/str}}"
+                        >
+                            <span class="sr-only">{{#str}}opendrawerindex, core{{/str}}</span>
+                            {{#pix}} t/index_drawer, moodle {{/pix}}
+                        </button>
+                    </div>
+                {{/courseindex}}
+                {{#hasblocks}}
+                    <div class="drawer-toggler drawer-right-toggle ml-auto d-print-none">
+                        <button
+                            class="btn icon-no-margin"
+                            data-toggler="drawers"
+                            data-action="toggle"
+                            data-target="theme_boost-drawers-blocks"
+                            data-toggle="tooltip"
+                            data-placement="right"
+                            title="{{#str}}opendrawerblocks, core{{/str}}"
+                        >
+                            <span class="sr-only">{{#str}}opendrawerblocks, core{{/str}}</span>
+                            <span class="dir-rtl-hide">{{#pix}}t/blocks_drawer, core{{/pix}}</span>
+                            <span class="dir-ltr-hide">{{#pix}}t/blocks_drawer_rtl, core{{/pix}}</span>
+                        </button>
+                    </div>
+                {{/hasblocks}}
+            </div>
+
+            <div id="page-content" class="d-print-block">
+                <div id="region-main-box">
+                    {{#hasregionmainsettingsmenu}}
+                    <div id="region-main-settings-menu" class="d-print-none">
+                        <div> {{{ regionmainsettingsmenu }}} </div>
+                    </div>
+                    {{/hasregionmainsettingsmenu}}
+                    <section id="region-main" aria-label="{{#str}}content{{/str}}">
+
+                        {{#hasregionmainsettingsmenu}}
+                            <div class="region_main_settings_menu_proxy"></div>
+                        {{/hasregionmainsettingsmenu}}
+                        {{{ output.course_content_header }}}
+                        {{#headercontent}}
+                            {{> core/activity_header }}
+                        {{/headercontent}}
+                        {{#overflow}}
+                            <div class="container-fluid tertiary-navigation">
+                                <div class="navitem">
+                                    {{> core/url_select}}
+                                </div>
+                            </div>
+                        {{/overflow}}
+                        {{{ output.main_content }}}
+                        {{{ output.activity_navigation }}}
+                        {{{ output.course_content_footer }}}
+
+                    </section>
+                </div>
+            </div>
+        </div>
+
+
+<section class="servicios">
+  <div class="container">
+    <h2 class="titulo">Nuestros servicios</h2>
+    <p class="subtitulo">
+      is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's<br>
+      standard dummy text ever since the 1500s,
+    </p>
+
+    <div class="servicios-grid">
+      <div class="servicio-box">
+        <img src="{{config.wwwroot}}/theme/moove/pix/icono1.png" alt="Icono 1" class="icono">
+        <h3>Lorem Ipsum</h3>
+        <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+      </div>
+
+      <div class="servicio-box servicio-destacado">
+        <img src="{{config.wwwroot}}/theme/moove/pix/icono2.png" alt="Icono 2" class="icono">
+        <h3>Lorem Ipsum</h3>
+        <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+      </div>
+
+      <div class="servicio-box">
+        <img src="{{config.wwwroot}}/theme/moove/pix/icono3.png" alt="Icono 3" class="icono">
+        <h3>Lorem Ipsum</h3>
+        <p>Velit faucibus sed adipiscing commodo. Mattis in at amet, facilisis eu dolor. Quam sit risus egestas morbi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mision-vision-valores">
+  <div class="container-mvv">
+    
+    <div class="card-mvv">
+      <div class="img-container">
+        <img src="{{config.wwwroot}}/theme/moove/pix/imagen.png" alt="Misión">
+        <div class="icono-circular">
+          <img src="{{config.wwwroot}}/theme/moove/pix/icono.png" alt="Icono">
+        </div>
+      </div>
+      <h3>Misión</h3>
+      <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+    </div>
+
+    <div class="card-mvv">
+      <div class="img-container">
+        <img src="{{config.wwwroot}}/theme/moove/pix/imagen.png" alt="Visión">
+        <div class="icono-circular">
+          <img src="{{config.wwwroot}}/theme/moove/pix/icono.png" alt="Icono">
+        </div>
+      </div>
+      <h3>Visión</h3>
+      <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+    </div>
+
+    <div class="card-mvv">
+      <div class="img-container">
+        <img src="{{config.wwwroot}}/theme/moove/pix/imagen.png" alt="Valores">
+        <div class="icono-circular">
+          <img src="{{config.wwwroot}}/theme/moove/pix/icono.png" alt="Icono">
+        </div>
+      </div>
+      <h3>Valores</h3>
+      <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="testimonios">
+  <div class="slider-container">
+    
+    <div class="slide active">
+      <div class="content-slide">
+        <div class="video-testimonio">
+          <iframe src="https://www.youtube.com/embed/nf5LYA1jN64" title="Testimonio 1" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="texto-testimonio">
+          <h3>“Testimonio lorem impsu generator”</h3>
+          <p>Velit faucibus sed adipiscing commodo. Mattis in at amet, facilisis eu dolor. Quam sit risus egestas morbi.</p>
+          <div class="dots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="content-slide">
+        <div class="video-testimonio">
+          <iframe src="https://www.youtube.com/embed/IuUjVhCP-Lo" title="Testimonio 2" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="texto-testimonio">
+          <h3>“Otro testimonio excelente”</h3>
+          <p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar.</p>
+          <div class="dots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
+      <div class="content-slide">
+        <div class="video-testimonio">
+          <iframe src="https://www.youtube.com/embed/Dab0OMdDEos" title="Testimonio 3" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="texto-testimonio">
+          <h3>“Un testimonio más”</h3>
+          <p>Donec sollicitudin molestie malesuada. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.</p>
+          <div class="dots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+        {{> theme_moove/footer }}
+    </div>
+    {{{ output.standard_after_main_region_html }}}
+</div>
+
+
+
+</body>
+</html>
+{{#js}}
+M.util.js_pending('theme_boost/loader');
+require(['theme_boost/loader', 'theme_boost/drawer'], function(Loader, Drawer) {
+    Drawer.init();
+    M.util.js_complete('theme_boost/loader');
+});
+{{/js}}

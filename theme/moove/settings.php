@@ -204,6 +204,7 @@ if ($ADMIN->fulltree) {
     $default = 1;
     $choices = [0 => get_string('no'), 1 => get_string('yes')];
     $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+
     $page->add($setting);
 
     // Slideshow.

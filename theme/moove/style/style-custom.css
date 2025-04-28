@@ -1,4 +1,6 @@
-/* === Custom Styles for Escuela Dr. Amin Ariza === */
+body{
+    background: #ffffff !important;
+}
 
 .pagelayout-login #page {
     display: flex;

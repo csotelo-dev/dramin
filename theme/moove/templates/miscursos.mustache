@@ -52,11 +52,27 @@
 {{> theme_moove/head }}
 
 <body {{{ bodyattributes }}}>
+<style>
+#page{
+    background: #fff;
+    margin-top: 0 !important;
+}
 
+.card-footer, .page-context-header{
+    display: none !important;
+}
+
+.headerandnav{
+    position: absolute;
+}
+
+</style>
 
 {{> theme_moove/accessibilitybar }}
 
 {{> core/local/toast/wrapper}}
+
+
 
 <div id="page-wrapper" class="d-print-block">
 
@@ -64,7 +80,7 @@
 
     {{> theme_moove/navbar }}
 
-
+<img style="display: block; width: 100%;" src="{{config.wwwroot}}/theme/moove/pix/miscursos.png" alt="Icono 2" class="icono">
 
 
     <div>
