@@ -55,7 +55,62 @@
         ]
     }
 }}
-<nav class="navbar fixed-top navbar-light bg-white navbar-expand shadow" aria-label="{{#str}}sitemenubar, admin{{/str}}">
+
+<style>
+.logo{
+    width: 180px !important;
+}
+
+.contact-bar {
+    background-color: #9B7B9F;
+    color: #ffffff;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 7px 45px;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    font-family: 'Arial', sans-serif;
+    font-size: 15px;
+    gap: 40px; 
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre imagen y texto */
+}
+
+.contact-icon {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1); /* 👈 Hace las imágenes blancas sin editarlas manualmente */
+}
+
+/* Responsive para móviles */
+@media (max-width: 600px) {
+    .contact-bar {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
+</style>
+
+<div class="contact-bar">
+    <div class="contact-item">
+        <img src="{{config.wwwroot}}/theme/moove/pix/correo.png" alt="Correo" class="contact-icon">
+        <span>info@escuelaaminariza.edu.co</span>
+    </div>
+    <div class="contact-item">
+        <img src="{{config.wwwroot}}/theme/moove/pix/telefono.png" alt="Teléfono" class="contact-icon">
+        <span>(+57) 315 752 2193</span>
+    </div>
+</div>
+
+
+<nav class="navbar  navbar-light bg-white navbar-expand shadow" aria-label="{{#str}}sitemenubar, admin{{/str}}">
 
     <button class="navbar-toggler aabtn d-block d-md-none px-1 my-1 border-0" data-toggler="drawers" data-action="toggle" data-target="theme_moove-drawers-primary">
         <span class="navbar-toggler-icon"></span>

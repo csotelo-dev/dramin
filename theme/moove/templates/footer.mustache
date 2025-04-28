@@ -32,183 +32,158 @@
     }
 }}
 
-<footer id="page-footer">
-    <div class="moove-container-fluid footer-columns">
-        <div class="row">
-            <div class="col-md-4 column-left">
-                <div class="contact">
-                    <h3 class="footer-title">{{#str}}contactus, theme_moove{{/str}}</h3>
 
-                    <ul>
-                        {{#website}}
-                            <li>
-                                <a href="{{{website}}}" target="_blank" class="website btn btn-link">
-                                    <i class="fa fa-globe"></i>
-                                </a>
-                            </li>
-                        {{/website}}
-                        {{#mobile}}
-                            <li>
-                                <a href="tel:{{{mobile}}}" target="_blank" class="mobile btn btn-link">
-                                    <i class="fa fa-phone"></i>
-                                </a>
-                            </li>
-                        {{/mobile}}
-                        {{#mail}}
-                            <li>
-                                <a href="mailto:{{{mail}}}" target="_blank" class="mail btn btn-link">
-                                    <i class="fa fa-envelope"></i>
-                                </a>
-                            </li>
-                        {{/mail}}
-                    </ul>
-                </div>
+<style>
+.footer {
+    background-color: #ffffff;
+    padding: 40px 20px;
+    font-family: 'Arial', sans-serif;
+    color: #000000;
+}
 
-                <div class="socialnetworks">
-                    <h3 class="footer-title">{{#str}}followus, theme_moove{{/str}}</h3>
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-                    <ul class="mb-0">
-                        {{#facebook}}
-                            <li>
-                                <a href="{{{facebook}}}" target="_blank" class="facebook btn btn-link btn-rounded">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                            </li>
-                        {{/facebook}}
+.footer-left {
+    flex: 1 1 300px;
+    margin-bottom: 20px;
+}
 
-                        {{#twitter}}
-                            <li>
-                                <a href="{{{twitter}}}" target="_blank" class="twitter btn btn-link btn-rounded">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                            </li>
-                        {{/twitter}}
+.footer-logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
 
-                        {{#linkedin}}
-                            <li>
-                                <a href="{{{linkedin}}}" target="_blank" class="linkedin btn btn-link btn-rounded">
-                                    <i class="fa fa-linkedin"></i>
-                                </a>
-                            </li>
-                        {{/linkedin}}
+.footer-description {
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+}
 
-                        {{#youtube}}
-                            <li>
-                                <a href="{{{youtube}}}" target="_blank" class="youtube btn btn-link btn-rounded">
-                                    <i class="fa fa-youtube"></i>
-                                </a>
-                            </li>
-                        {{/youtube}}
+.footer-socials {
+    display: flex;
+    gap: 15px;
+}
 
-                        {{#instagram}}
-                            <li>
-                                <a href="{{{instagram}}}" target="_blank" class="instagram btn btn-link btn-rounded">
-                                    <i class="fa fa-instagram"></i>
-                                </a>
-                            </li>
-                        {{/instagram}}
+.social-icon {
+    width: 24px;
+    height: 24px;
+}
 
-                        {{#whatsapp}}
-                            <li>
-                                <a href="https://api.whatsapp.com/send?phone={{{whatsapp}}}" target="_blank" class="whatsapp btn btn-link btn-rounded">
-                                    <i class="fa fa-whatsapp"></i>
-                                </a>
-                            </li>
-                        {{/whatsapp}}
+.footer-right {
+    display: flex;
+    flex: 2 1 600px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 
-                        {{#telegram}}
-                            <li>
-                                <a href="{{{telegram}}}" target="_blank" class="telegram btn btn-link btn-rounded">
-                                    <i class="fa fa-telegram"></i>
-                                </a>
-                            </li>
-                        {{/telegram}}
-                    </ul>
-                </div>
+.footer-section {
+    flex: 1 1 150px;
+    margin-bottom: 20px;
+}
+
+.footer-section h4 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: #000000;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #8b7294;
+}
+
+.footer-line {
+    margin: 30px 0 10px;
+    border: none;
+    border-top: 1px solid #ccc;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-right {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-section {
+        margin-bottom: 20px;
+    }
+}
+
+</style>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-left">
+            <img src="{{config.wwwroot}}/theme/moove/pix/logo-footer.png" alt="Logo" class="footer-logo">
+            <p class="footer-description">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry
+            </p>
+            <div class="footer-socials">
+                <a href="#"><img src="{{config.wwwroot}}/theme/moove/pix/facebook.png" alt="Facebook" class="social-icon"></a>
+                <a href="#"><img src="{{config.wwwroot}}/theme/moove/pix/twitter.png" alt="Twitter" class="social-icon"></a>
+                <a href="#"><img src="{{config.wwwroot}}/theme/moove/pix/instagram.png" alt="Instagram" class="social-icon"></a>
+                <a href="#"><img src="{{config.wwwroot}}/theme/moove/pix/linkeind.png" alt="LinkedIn" class="social-icon"></a>
             </div>
-            <div class="col-md-4 column-center">
-                {{# output.supportemail }}
-                    <div class="supportemail">{{{ output.supportemail }}}</div>
-                {{/ output.supportemail }}
-
-                {{{ output.login_info }}}
-
-                {{{ output.standard_footer_html }}}
-
-                <div class="tool_usertours-resettourcontainer"></div>
+        </div>
+        <div class="footer-right">
+            <div class="footer-section">
+                <h4>Páginas</h4>
+                <ul>
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="/my/">Área personal</a></li>
+                    <li><a href="/my/courses.php">Mis cursos</a></li>
+                </ul>
             </div>
-            <div class="col-md-4 column-right">
-                {{#enablemobilewebservice}}
-                    {{#mobilesetuplink}}
-                        <a href="{{{mobilesetuplink}}}">{{#str}}getmoodleonyourmobile, tool_mobile{{/str}}</a>
-                    {{/mobilesetuplink}}
-                    {{^mobilesetuplink}}
-                        <h3 class="footer-title">{{#str}}getmoodleonyourmobile, tool_mobile{{/str}}</h3>
-                    {{/mobilesetuplink}}
-                    <div class="stores">
-                        {{#androidappid}}
-                            <a href="https://play.google.com/store/apps/details?id={{androidappid}}">
-                                <img src="{{config.wwwroot}}/theme/moove/pix/store_google.svg" alt="Play Store">
-                            </a>
-                        {{/androidappid}}
-                        {{#iosappid}}
-                            <a class="mt-1" href="https://apps.apple.com/app/id{{iosappid}}">
-                                <img src="{{config.wwwroot}}/theme/moove/pix/store_apple.svg" alt="App Store">
-                            </a>
-                        {{/iosappid}}
-                    </div>
-                {{/enablemobilewebservice}}
+            <div class="footer-section">
+                <h4>Teléfono</h4>
+                <p>(+57) 315 752 2193</p>
+                <p>(+57) 301 741 6269</p>
+            </div>
+            <div class="footer-section">
+                <h4>Correo</h4>
+                <p>info@escuelaaminariza.edu.co</p>
             </div>
         </div>
     </div>
-
-    <div class="footer-content-debugging footer-dark bg-dark text-light">
-        <div class="moove-container-fluid footer-dark-inner">
-            {{{ output.debug_footer_html }}}
-        </div>
-    </div>
-
-    <div data-region="footer-container-popover">
-        {{#output.has_communication_links}}
-            <button onclick="window.open('{{output.communication_url}}', '_blank', 'noreferrer')" class="btn btn-icon bg-primary text-white icon-no-margin btn-footer-communication" aria-label="{{#str}}communicationroomlink, course{{/str}}">
-                {{#pix}}t/messages-o, core{{/pix}}
-            </button>
-        {{/output.has_communication_links}}
-        <button class="btn btn-icon bg-secondary icon-no-margin btn-footer-popover" data-action="footer-popover" aria-label="{{#str}}showfooter, theme_boost{{/str}}">
-            {{#pix}}e/question, core{{/pix}}
-        </button>
-    </div>
-    <div class="footer-content-popover container" data-region="footer-content-popover">
-        {{# output.has_popover_links }}
-            <div class="footer-section p-3 border-bottom">
-                {{# output.page_doc_link }}
-                    <div>{{{ output.page_doc_link }}}</div>
-                {{/ output.page_doc_link }}
-
-                {{# output.services_support_link }}
-                    <div>{{{ output.services_support_link }}}</div>
-                {{/ output.services_support_link }}
-            </div>
-        {{/ output.has_popover_links }}
-        <div class="footer-section p-3">
-            <div>{{#str}}poweredbymoodle, core{{/str}}</div>
-            {{#output.moodle_release}}
-                <div>
-                    {{#str}}version, core{{/str}} {{{ output.moodle_release }}}
-                </div>
-            {{/output.moodle_release}}
-        </div>
-    </div>
-
-    <div class="copyright">
-        <div class="madeby">
-            <p>{{#str}}themedevelopedby, theme_moove{{/str}}</p>
-            <a href="https://conecti.me">
-                <img src="{{config.wwwroot}}/theme/moove/pix/logo_conectime.svg" alt="Conecti.me" style="height: 40px;">
-            </a>
-        </div>
+    <hr class="footer-line">
+    <div class="footer-bottom">
+        <p>Copyright © 2025 Todos los Derechos Reservados. Corporación Educativa Dr. Amin Ariza</p>
     </div>
 </footer>
+
 
 {{{ output.standard_end_of_body_html }}}
 

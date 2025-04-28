@@ -67,7 +67,7 @@ $THEME->layouts = [
     ],
     // The site home page.
     'frontpage' => [
-        'file' => 'frontpage.php',
+        'file' => 'front-escuela.php',
         'regions' => ['side-pre'],
         'defaultregion' => 'side-pre',
         'options' => ['nonavbar' => true],
@@ -80,7 +80,7 @@ $THEME->layouts = [
     ],
     // My courses page.
     'mycourses' => [
-        'file' => 'drawers.php',
+        'file' => 'miscursos.php',
         'regions' => ['side-pre'],
         'defaultregion' => 'side-pre',
         'options' => ['nonavbar' => true],

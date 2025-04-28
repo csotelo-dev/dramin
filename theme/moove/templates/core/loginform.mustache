@@ -92,17 +92,166 @@
         "languagemenu": "Choose language"
     }
 }}
-<div class="loginform row {{#hastwocolumns}}hastwocolumns{{/hastwocolumns}}">
+<style>
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    background: transparent;
+    margin-bottom: 20px;
+    overflow: hidden;
+    height: 50px; 
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 70px;
+    height: 100%;
+    position: relative;
+    background: transparent;
+}
+
+.input-icon {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 5px;
+}
+
+.vertical-line {
+    width: 2px;
+    height: 60%;
+    background-color: white;
+    position: absolute;
+    right: 0;
+    top: 20%;
+}
+
+.input-field {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 20px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.input-field::placeholder {
+    color: #fff;
+    opacity: 1;
+}
+
+.input-field:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.submit-button {
+    background-color: #fff;
+    color: #7D5A88;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 8px;
+    font-size: 18px;
+    border: none;
+    width: 100%;
+}
+
+.submit-button:hover, .submit-button:active, .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show>.btn-primary.dropdown-toggle{
+    background-color: #7D5A88;
+    color: #fff;
+}
+
+
+.login-forgotpassword p {
+    color: #fff;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.login-forgotpassword a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.input-field {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 20px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.input-field::placeholder {
+    color: #fff;
+    opacity: 1;
+}
+
+
+.input-field:focus,
+.input-field:hover {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #fff;
+    outline: none;
+}
+/* Limpiar el fondo del contenedor de inputs sensibles (como password) */
+.toggle-sensitive-wrapper {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* También eliminar fondo en hover o focus */
+.toggle-sensitive-wrapper:hover,
+.toggle-sensitive-wrapper:focus-within {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+
+.input-field,
+.input-field:focus,
+.input-field:hover {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #fff;
+    outline: none;
+}
+
+.input-field:-webkit-autofill,
+.input-field:-webkit-autofill:hover, 
+.input-field:-webkit-autofill:focus, 
+.input-field:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+    box-shadow: 0 0 0 30px transparent inset !important;
+    background-color: transparent !important;
+    color: #fff !important;
+    caret-color: white;
+}
+
+
+.form-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+</style>
+
+<div class="row {{#hastwocolumns}}hastwocolumns{{/hastwocolumns}}">
     <div class="{{#hastwocolumns}}col-lg-6 col-md-12 left-column{{/hastwocolumns}}{{^hastwocolumns}}col{{/hastwocolumns}}">
-        {{#logourl}}
-            <div id="loginlogo" class="login-logo">
-                <img id="logoimage" src="{{logourl}}" class="img-fluid" alt="{{sitename}}"/>
-                <h1 class="login-heading sr-only">{{#str}} loginto, core, {{sitename}} {{/str}}</h1>
-            </div>
-        {{/logourl}}
-        {{^logourl}}
-            <h1 class="login-heading mb-4">{{#str}} loginto, core, {{sitename}} {{/str}}</h1>
-        {{/logourl}}
+
         {{#maintenance}}
             <div class="alert alert-danger login-maintenance">
                 {{{maintenance}}}
@@ -119,71 +268,52 @@
         {{#cansignup}}
             <a href="{{signupurl}}" class="sr-only">{{#str}} tocreatenewaccount {{/str}}</a>
         {{/cansignup}}
-
+        <div class="form-container">
         <form class="login-form test" action="{{loginurl}}" method="post" id="login">
             <input type="hidden" name="logintoken" value="{{logintoken}}">
-            <div class="login-form-username form-group">
-                <label for="username" class="sr-only">
-                    {{^canloginbyemail}}
-                        {{#str}} username {{/str}}
-                    {{/canloginbyemail}}
-                    {{#canloginbyemail}}
-                        {{#str}} usernameemail {{/str}}
-                    {{/canloginbyemail}}
-                </label>
-                <input type="text" name="username" id="username" {{!
-                !}}class="form-control form-control-lg" {{!
-                !}}value="{{username}}" {{!
-                !}}placeholder="{{^canloginbyemail}}{{#cleanstr}}username{{/cleanstr}}{{/canloginbyemail}}{{!
-                !}}{{#canloginbyemail}}{{#cleanstr}}usernameemail{{/cleanstr}}{{/canloginbyemail}}" {{!
-                !}}autocomplete="username">
+
+            <div class="form-group input-wrapper">
+                <div class="icon-container">
+                    <img src="{{{config.wwwroot}}}/theme/moove/pix/user.png" alt="User Icon" class="input-icon">
+                    <div class="vertical-line"></div>
+                </div>
+                <input type="text" name="username" id="username"
+                    class="form-control input-field"
+                    value="{{username}}"
+                    placeholder="{{^canloginbyemail}}{{#cleanstr}}username{{/cleanstr}}{{/canloginbyemail}}{{#canloginbyemail}}{{#cleanstr}}usernameemail{{/cleanstr}}{{/canloginbyemail}}"
+                    autocomplete="username">
             </div>
-            <div class="login-form-password form-group">
-                <label for="password" class="sr-only">{{#str}} password {{/str}}</label>
-                <input type="password" name="password" id="password" value="" {{!
-                !}}class="form-control form-control-lg" {{!
-                !}}placeholder="{{#cleanstr}}password{{/cleanstr}}" {{!
-                !}}autocomplete="current-password">
+
+            <div class="form-group input-wrapper">
+                <div class="icon-container" style="width: 80px;">
+                    <img src="{{{config.wwwroot}}}/theme/moove/pix/pass.png" alt="Password Icon" class="input-icon">
+                    <div class="vertical-line"></div>
+                </div>
+                <input type="password" name="password" id="password"
+                    class="form-control input-field"
+                    placeholder="{{#cleanstr}}password{{/cleanstr}}"
+                    autocomplete="current-password">
             </div>
+
             {{#recaptcha}}
                 <div class="login-form-recaptcha form-group">
                     {{{recaptcha}}}
                 </div>
             {{/recaptcha}}
-            <div class="login-form-submit form-group">
-                <button class="btn btn-primary btn-block btn-lg" type="submit" id="loginbtn">{{#str}}login{{/str}}</button>
+
+            <div class="form-group text-center">
+                <button class="btn btn-primary btn-block btn-lg submit-button" type="submit" id="loginbtn">
+                    Ingresar
+                </button>
             </div>
-            <div class="login-form-forgotpassword form-group text-center">
-                <a href="{{forgotpasswordurl}}">{{#str}}forgotaccount{{/str}}</a>
-            </div>
-            {{#cansignup}}
-                <div class="login-signup text-center">
-                    {{#str}}donthaveanaccount, theme_moove{{/str}} <a href="{{signupurl}}">{{#str}}startsignup{{/str}}</a>
+
+            {{#forgotpasswordurl}}
+                <div class="login-forgotpassword text-center">
+                    <p>¿Olvidaste tu contraseña? <a href="{{forgotpasswordurl}}">Restablécela aquí</a></p>
                 </div>
-            {{/cansignup}}
+            {{/forgotpasswordurl}}
         </form>
-        {{^hastwocolumns}}
-            {{#canloginasguest}}
-                <form action="{{loginurl}}" method="post" id="guestlogin" class="mt-2">
-                    <input type="hidden" name="logintoken" value="{{logintoken}}">
-                    <input type="hidden" name="username" value="guest" />
-                    <input type="hidden" name="password" value="guest" />
-                    <button class="btn btn-secondary btn-block" type="submit">{{#str}}loginguest{{/str}}</button>
-                </form>
-            {{/canloginasguest}}
-            <div class="d-flex mt-2">
-                {{#languagemenu}}
-                    <div class="login-languagemenu">
-                        {{>core/action_menu}}
-                    </div>
-                {{/languagemenu}}
-                <button type="button" class="ml-auto btn btn-link" {{!
-                }} data-modal="alert"{{!
-                }} data-modal-title-str='["cookiesenabled", "core"]' {{!
-                }} data-modal-content-str='["cookiesenabled_help_html", "core"]'{{!
-                }}><i class="fa fa-question-circle"></i> {{#str}}cookiesnotice{{/str}}</button>
-            </div>
-        {{/hastwocolumns}}
+        </div>
     </div>
     {{#hastwocolumns}}
         <div class="col-lg-6 col-md-12 right-column">

@@ -52,6 +52,50 @@
 {{> theme_moove/head }}
 
 <body {{{ bodyattributes }}}>
+<style>
+.bloque-bienvenida {
+  background-color: #fff;
+  padding: 20px 30px;
+}
+
+.bienvenida-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bienvenida-izquierda {
+  display: flex;
+  flex-direction: column;
+}
+
+.bienvenida-subtitulo {
+  font-size: 16px;
+  color: #333;
+  margin: 0;
+}
+
+.bienvenida-curso {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 5px 0 0 0;
+  color: #000;
+}
+
+.bienvenida-derecha {
+  text-align: right;
+}
+
+.progreso-curso {
+  font-size: 14px;
+  font-weight: bold;
+  color: #00aaff; /* azul brillante */
+  margin: 0;
+}
+
+</style>
+
+
 {{> theme_moove/accessibilitybar }}
 
 {{> core/local/toast/wrapper}}
@@ -96,8 +140,25 @@
         {{/ theme_boost/drawer}}
     {{/hasblocks}}
     <div id="page" data-region="mainpage" data-usertour="scroller" class="drawers {{#courseindexopen}}show-drawer-left{{/courseindexopen}} {{#blockdraweropen}}show-drawer-right{{/blockdraweropen}} drag-container">
+<section class="bloque-bienvenida">
+  <div class="bienvenida-container">
+    <div class="bienvenida-izquierda">
+      <p class="bienvenida-subtitulo">Bienvenidos</p>
+      <h2 class="bienvenida-curso">{{{ fullname }}}</h2> 
+    </div>
+    <div class="bienvenida-derecha">
+      {{#hasprogress}}
+        <p class="progreso-curso">Total: {{progress}}% del curso</p>
+      {{/hasprogress}}
+    </div>
+  </div>
+</section>
+
 
         {{{ output.full_header }}}
+
+
+
 
         <div id="topofscroll" class="main-inner">
             <div class="coursecontentblocks">
