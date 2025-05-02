@@ -1,0 +1,23 @@
+<h2>{{{ course.fullname }}}</h2>
+
+{{#course.overviewfiles}}
+  {{#image}}
+    <div class="course-image" style="text-align:center; margin: 20px 0;">
+        <img src="{{fileurl}}" alt="{{name}}" style="max-width:100%; border-radius: 8px; border: 1px solid #ccc;">
+    </div>
+  {{/image}}
+{{/course.overviewfiles}}
+
+{{^course.overviewfiles}}
+  <p style="color: red;">❌ No hay imagen en los archivos del resumen del curso.</p>
+{{/course.overviewfiles}}
+
+{{#course.summary}}
+  <div class="course-summary" style="margin: 20px 0; font-style: italic;">
+    {{{ course.summary }}}
+  </div>
+{{/course.summary}}
+
+<div class="course-content">
+    {{{ output.main_content }}}
+</div>
