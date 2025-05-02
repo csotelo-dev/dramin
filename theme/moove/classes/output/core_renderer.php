@@ -553,4 +553,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $newnav = new \theme_moove\output\boostnavbar($this->page);
         return $this->render_from_template('core/navbar', $newnav);
     }
+
+   
+    
 }

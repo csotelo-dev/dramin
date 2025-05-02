@@ -1,0 +1,13 @@
+<div class="custom-course-card">
+    {{#hasimage}}
+        <img src="{{courseimage}}" alt="{{fullname}}" class="course-image"/>
+    {{/hasimage}}
+
+    <h3 class="course-title">{{{fullname}}}</h3>
+
+    {{#summary}}
+        <div class="course-summary">{{{summary}}}</div>
+    {{/summary}}
+
+    <a href="{{{viewurl}}}" class="btn-enter-course">Ir al curso →</a>
+</div>

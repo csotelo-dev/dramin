@@ -166,6 +166,13 @@ $THEME->layouts = [
         'regions' => ['side-pre'],
         'defaultregion' => 'side-pre',
     ],
+    // Área personal
+    'areapersonal' => [
+        'file' => 'area-personal.php',
+        'regions' => ['side-pre'],
+        'defaultregion' => 'side-pre',
+        'options' => ['nonavbar' => true, 'langmenu' => true],
+    ],
 ];
 
 $THEME->parents = ['boost'];
@@ -175,6 +182,14 @@ $THEME->prescsscallback = 'theme_moove_get_pre_scss';
 $THEME->precompiledcsscallback = 'theme_moove_get_precompiled_css';
 $THEME->yuicssmodules = [];
 $THEME->rendererfactory = 'theme_overridden_renderer_factory';
+
+$THEME->renderers = [
+    'core_course' => 'theme_moove\\output\\core_course\\core_renderer',
+];
+
+
+
+
 $THEME->requiredblocks = '';
 $THEME->addblockposition = BLOCK_ADDBLOCK_POSITION_FLATNAV;
 $THEME->iconsystem = \core\output\icon_system::FONTAWESOME;

@@ -58,32 +58,24 @@
   padding: 20px 30px;
 }
 
-.bienvenida-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.bloque-bienvenida h2{
+    font-weight: 300;
+    padding-left: 0;
+    margin-bottom: 0;
+    padding-top: 40px;
 }
 
-.bienvenida-izquierda {
-  display: flex;
-  flex-direction: column;
+#page-header{
+    margin-top: 0;
 }
 
-.bienvenida-subtitulo {
-  font-size: 16px;
-  color: #333;
-  margin: 0;
+#page{
+    background: #fff;
+    margin-top: 0 !important;
 }
 
-.bienvenida-curso {
-  font-size: 24px;
-  font-weight: bold;
-  margin: 5px 0 0 0;
-  color: #000;
-}
-
-.bienvenida-derecha {
-  text-align: right;
+.drawer-toggler{
+    z-index: 999999 !important;
 }
 
 .progreso-curso {
@@ -91,6 +83,18 @@
   font-weight: bold;
   color: #00aaff; /* azul brillante */
   margin: 0;
+}
+
+#region-main{
+    background: #f4f4f4;
+    padding: 18px;
+    border-radius: 12px;
+}
+
+.block_html{
+    background-color: #00000000;
+    border: none;
+    box-shadow: none;
 }
 
 </style>
@@ -104,6 +108,7 @@
     {{{ output.standard_top_of_body_html }}}
 
     {{> theme_moove/navbar }}
+
 
     {{#courseindex}}
         {{< theme_boost/drawer }}
@@ -140,25 +145,14 @@
         {{/ theme_boost/drawer}}
     {{/hasblocks}}
     <div id="page" data-region="mainpage" data-usertour="scroller" class="drawers {{#courseindexopen}}show-drawer-left{{/courseindexopen}} {{#blockdraweropen}}show-drawer-right{{/blockdraweropen}} drag-container">
-<section class="bloque-bienvenida">
-  <div class="bienvenida-container">
-    <div class="bienvenida-izquierda">
-      <p class="bienvenida-subtitulo">Bienvenidos</p>
-      <h2 class="bienvenida-curso">{{{ fullname }}}</h2> 
+
+        
+<div class="bloque-bienvenida">
+    <div>
+            <h2 class="moove-container-fluid ">Bienvenidos</h2>
+            {{{ output.full_header }}}
     </div>
-    <div class="bienvenida-derecha">
-      {{#hasprogress}}
-        <p class="progreso-curso">Total: {{progress}}% del curso</p>
-      {{/hasprogress}}
-    </div>
-  </div>
-</section>
-
-
-        {{{ output.full_header }}}
-
-
-
+</div>
 
         <div id="topofscroll" class="main-inner">
             <div class="coursecontentblocks">
